@@ -23,6 +23,9 @@ namespace CSharpPracticeDelegatesandmore
                 Console.WriteLine($"{x0:N2} : {y:N2}");
             }
         }
+                                                        //Param, return  max 16 param and 1 return type
+                                                        //Func<int, void> Return type of void wont work 
+                                                        //use Action<int> instead 
         public static void PlotFunctionGenericDelegate(Func<double , double> myfunc, double start, double end, double diff)
         {
             for (double x0 = start; x0 < end; x0 += diff)
