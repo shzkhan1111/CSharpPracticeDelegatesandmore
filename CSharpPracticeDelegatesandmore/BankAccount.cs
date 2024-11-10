@@ -17,7 +17,7 @@ namespace CSharpPracticeDelegatesandmore
     public class BankAccount
     {
         public decimal Balance { get; private set; }
-
+        private IAccountValidator _validator;
         /// <summary>
         /// Event Makes it such
         /// This will work but it will have a public += and -= and private invoke
@@ -33,21 +33,29 @@ namespace CSharpPracticeDelegatesandmore
         private EventHandler<AccountArgs>? _withDrawn4 = null; 
         public event EventHandler<AccountArgs> WithDrawn4 { add { _withDrawn4 += value; } remove { _withDrawn4 -= value; } }
 
-
+        public BankAccount()
+        {
+            _validator = new SimpleValidator(10000);
+            _validator.Validated += (s,e) => Withdrawn?.Invoke(this, e);
+        }
 
         public void Deposit(decimal amount)
         {
             Balance += amount;
+
+            _validator.Validate(Balance);
         }
         public void Withdraw(decimal amount)
         {
             Balance -= amount;
-            if (Balance < 0)
-            {
-                Withdrawn?.Invoke(this, new AccountArgs { Message = "WithDrawn 1 You are Over Drawn" });
-                WithDrawn2?.Invoke(this, new AccountArgs { Message = "WithDrawn 2 You are Over Drawn" });
-                _withDrawn4?.Invoke(this, new AccountArgs { Message = "WithDrawn 2 from private method You are Over Drawn" });
-            }
+            _validator.Validate(Balance);
+
+            //if (Balance < 0)
+            //{
+            //    Withdrawn?.Invoke(this, new AccountArgs { Message = "WithDrawn 1 You are Over Drawn" });
+            //    WithDrawn2?.Invoke(this, new AccountArgs { Message = "WithDrawn 2 You are Over Drawn" });
+            //    _withDrawn4?.Invoke(this, new AccountArgs { Message = "WithDrawn 2 from private method You are Over Drawn" });
+            //}
         }
     }
 }

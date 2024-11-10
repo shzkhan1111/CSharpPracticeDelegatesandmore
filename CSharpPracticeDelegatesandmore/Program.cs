@@ -34,21 +34,24 @@ using static CSharpPracticeDelegatesandmore.Delegates;
 //Console.WriteLine($"{t}");
 
 BankAccount ba = new BankAccount();
-ba.Deposit(500);
+
 
 ba.Withdrawn += (s, e) => Console.WriteLine($"Message 1 from bank is {e.Message}.");
-ba.WithDrawn2 += (s, e) => Console.WriteLine($"Message 2 from bank is {e.Message}.");
-ba.WithDrawn3 += (s, e) => Console.WriteLine($"Message 3 from bank is {e.Message}.");
-ba.WithDrawn3.Invoke(null, new AccountArgs { Message = "WithDrawn 2 You are Over Drawn" });
-ba.WithDrawn4 += (s, e) => Console.WriteLine($"Message 2 from bank is {e.Message}.");
+ba.Deposit(500);
+//ba.WithDrawn2 += (s, e) => Console.WriteLine($"Message 2 from bank is {e.Message}.");
+//ba.WithDrawn3 += (s, e) => Console.WriteLine($"Message 3 from bank is {e.Message}.");
+//ba.WithDrawn3.Invoke(null, new AccountArgs { Message = "WithDrawn 2 You are Over Drawn" });
+//ba.WithDrawn4 += (s, e) => Console.WriteLine($"Message 2 from bank is {e.Message}.");
 
-//wont work as it is declared with event 
-//ba.WithDrawn2.Invoke(null, new AccountArgs { Message = "WithDrawn 2 You are Over Drawn" });
+////wont work as it is declared with event 
+////ba.WithDrawn2.Invoke(null, new AccountArgs { Message = "WithDrawn 2 You are Over Drawn" });
 
-ba.Withdraw(1000);
+//ba.Withdraw(1000);
 
 
-Console.WriteLine(ba.Balance);
+//Console.WriteLine(ba.Balance);
+
+
 
 
 
