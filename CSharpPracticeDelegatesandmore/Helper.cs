@@ -26,5 +26,37 @@ namespace CSharpPracticeDelegatesandmore
             return res;
         }
 
+
+    }
+    public class PartyHost
+    {
+        public event Action? InFormAttendees;
+        //public PartyHost()
+        //{
+        //    Attending += () => { };
+        //}
+        public void InvokeEvent()
+        {
+            Console.WriteLine("Event Is being Invoked");
+            InFormAttendees?.Invoke();
+            Console.WriteLine("Attendees have been Invoked");
+        }
+    }
+    public class Attendants
+    {
+        string name;
+        public Attendants(string name)
+        {
+            this.name = name;
+        }
+
+        public void InformYes()
+        {
+            Console.WriteLine($"{this.name}, Yes I am Attending");
+        }
+        public void InformNo()
+        {
+            Console.WriteLine($"{this.name}, No I am Not Attending");
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,7 +41,54 @@ namespace CSharpPracticeDelegatesandmore
             Console.WriteLine($"output for value passed {valPassed1} and {valuePassed2} called via function is {output}");
         }
 
+        //public delegate void ToWrap();
 
+        //public void Wrap(ToWrap wrap)
+        public void Wrap(Action wrap)
+        {
+            Console.WriteLine("start to Wrap");
+            wrap();
+            Console.WriteLine("end Wrap");
+        }
+        public void fu1()
+        {
+            Console.WriteLine("doing task 1");
+        }
+        public void fu2()
+        {
+            Console.WriteLine("doing task 2");
+        }
+        public void fu3()
+        {
+            Console.WriteLine("doing task 2");
+            throw new Exception();
+        }
+        public void Try(Action funct)
+        {
+            try
+            {
+                Console.WriteLine("Trying");
+                funct();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"You have an exception {ex.Message}");
+            }
+        }
+
+        public static int functSum(int a , int b)
+        {
+            return a + b;
+        }
+        public static int functMul(int a, int b)
+        {
+            return a * b;
+        }
+
+        public static int functDo(Func<int , int, int> fffu, int a , int b)
+        {
+            return fffu(a , b); 
+        }
 
 
     }
